@@ -59,6 +59,11 @@ class EventualNode:
             else:
                 return "NULL"
 
+        def update(self, key, value):
+            self.data[key] = value
+            if self.verbose:
+                print("Node {} Updated! -> Key {}, Value {}".format(self.node_id, key, value))
+
         def remove(self, key):
             if self.verbose:
                 print("Node {} Remove! -> Key {}".format(self.node_id, key))
