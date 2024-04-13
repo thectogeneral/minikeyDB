@@ -51,6 +51,14 @@ class EventualNode:
             if self.verbose:
                 print("Node {} -> Key {}, value{}".format(self.nodeId, key, value))
 
+        def get(self, key):
+            if self.verbose:
+                print("Node {} GET -> Key {}".format(self.node_id, key))
+            if self.data.get(key):
+                return self.data.get(key)
+            else:
+                return "NULL"
+
 
 def update_others_eventual(other_nodes, key, value):
         for node in other_nodes:
