@@ -59,6 +59,15 @@ class EventualNode:
             else:
                 return "NULL"
 
+        def remove(self, key):
+            if self.verbose:
+                print("Node {} Remove! -> Key {}".format(self.node_id, key))
+            if self.data.get(key):
+                t = threading.Thread(target=update_remove_eventual, args=(self.other_nodes, key,))
+                t.start()
+                return self.data.pop(key)
+            else:
+                return "NULL"
 
 def update_others_eventual(other_nodes, key, value):
         for node in other_nodes:
@@ -70,3 +79,14 @@ def update_others_eventual(other_nodes, key, value):
                     break
                 except:
                     continue
+
+def update_remove_eventual(other_nodes, key):
+    for node in other_nodes:
+        while True:
+            delay = random.uniform(0.2, 1)
+            time.sleep(delay)
+            try:
+                node.update_remove(key)
+                break
+            except:
+                continue
