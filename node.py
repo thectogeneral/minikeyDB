@@ -74,6 +74,12 @@ class EventualNode:
             else:
                 return "NULL"
 
+        def update_remove_node(self, key):
+            if self.data.get(key):
+                self.data.pop(key):
+            if self.verbose:
+            print("Node {} Updated Remove! -> Key {}".format(self.node_id, key))
+
 def update_others_eventual(other_nodes, key, value):
         for node in other_nodes:
             while True:
