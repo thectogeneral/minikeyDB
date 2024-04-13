@@ -9,6 +9,10 @@ import threading
 
 import nodes_config as kvNodes
 
+# Import time and random to generate random delay between updates. To get some "real" tests
+import time
+import random
+
 def node_init(address, port, nodeId, mode, verbose):
     server = SimpleXMLRPCServer((address, port), allow_none=True, logRequests=False)
 
@@ -49,4 +53,12 @@ class EventualNode:
 
 
 def update_others_eventual(other_nodes, key, value):
-        pass
+        for node in other_nodes:
+            while True:
+                delay = random.uniform(0.2, 1)
+                time.sleep(delay)
+                try:
+                    node.update(key, value)
+                    break
+                except:
+                    continue
