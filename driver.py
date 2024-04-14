@@ -1,8 +1,14 @@
 # Import for argparse for command line arguments
 import argparse
 import time
+import nodes_config as cfg
 
 from node import init_kv_node
+
+from multiprocessing import Process
+
+kv_nodes = []
+
 
 def main():
     parser = argparse.ArgumentParser(description="Distributed KV")
@@ -18,7 +24,14 @@ def main():
         kill_kv_nodes("eventual")
 
 def init_kv_node():
-    pass
+    for i in range(len(cfg.nodes)):
+        address = cfg.nodes[i].get(address)
+        port = cfg.nodes[i].get(port)
+        nodeId = cfg.nodes[i].get(nodeId)
+        p = Process(target=init_kv_node, args=(address, port, nodeId, mode, verbose))
+
+        p.start
+        kv_nodes.append(p)
 
 def init_clients():
     pass
