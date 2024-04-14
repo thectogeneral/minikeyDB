@@ -1,17 +1,17 @@
 nodes = [
     {
         "address": "127.0.0.1",
-        "port": 74445,
+        "port": 34566,
         "nodeId": 1
     },
     {
         "address": "127.0.0.1",
-        "port": 74446,
+        "port": 34567,
         "nodeId": 2
     },
     {
         "address": "127.0.0.1",
-        "port": 74447,
+        "port": 34568,
         "nodeId": 3
     }
 ]
