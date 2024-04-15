@@ -54,7 +54,7 @@ class EventualNode:
 
     def get(self, key):
         if self.verbose:
-            print("Node {} GET -> Key {}".format(self.node_id, key))
+            print("Node {} GET -> Key {}".format(self.nodeId, key))
         if self.data.get(key):
             return self.data.get(key)
         else:
@@ -63,11 +63,11 @@ class EventualNode:
     def update(self, key, value):
         self.data[key] = value
         if self.verbose:
-            print("Node {} Updated! -> Key {}, Value {}".format(self.node_id, key, value))
+            print("Node {} Updated! -> Key {}, Value {}".format(self.nodeId, key, value))
 
     def remove(self, key):
         if self.verbose:
-            print("Node {} Remove! -> Key {}".format(self.node_id, key))
+            print("Node {} Remove! -> Key {}".format(self.nodeId, key))
         if self.data.get(key):
             t = threading.Thread(target=update_remove_eventual, args=(self.other_nodes, key,))
             t.start()
@@ -79,7 +79,7 @@ class EventualNode:
         if self.data.get(key):
             self.data.pop(key)
         if self.verbose:
-            print("Node {} Updated Remove! -> Key {}".format(self.node_id, key))
+            print("Node {} Updated Remove! -> Key {}".format(self.nodeId, key))
 
 def update_others_eventual(other_nodes, key, value):
         for node in other_nodes:
